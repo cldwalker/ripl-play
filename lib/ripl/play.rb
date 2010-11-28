@@ -10,11 +10,20 @@ module Ripl::Play
     if !$stdin.tty?
       play_back_string($stdin.read)
       $stdin.reopen '/dev/tty'
-    elsif File.exists? config[:play].to_s
+    elsif config[:play][/^http/]
+      play_back_url
+    elsif File.exists? config[:play]
       play_back_string(File.read(config[:play]))
     else
       abort "ripl can't play `#{config[:play]}'"
     end
+  end
+
+  def play_back_url
+    require 'open-uri'
+    play_back_string open(config[:play]).string
+  rescue SocketError
+    abort "ripl can't play `#{config[:play]}'"
   end
 
   def play_back_string(str)
