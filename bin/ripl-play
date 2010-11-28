@@ -2,5 +2,5 @@
 
 require 'ripl'
 require 'ripl/play'
-Ripl.config[:play] = ARGV[0] if ARGV[0]
+Ripl.config[:play] = ARGV[0].dup if ARGV[0]
 Ripl.start

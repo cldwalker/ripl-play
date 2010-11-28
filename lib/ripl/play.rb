@@ -11,7 +11,7 @@ module Ripl::Play
       play_back_string($stdin.read)
       $stdin.reopen '/dev/tty'
     elsif config[:play][/^http/]
-      play_back_url
+      play_back_url(config[:play])
     elsif File.exists? config[:play]
       play_back_string(File.read(config[:play]))
     else
@@ -19,11 +19,19 @@ module Ripl::Play
     end
   end
 
-  def play_back_url
+  def play_back_url(url)
     require 'open-uri'
-    play_back_string open(config[:play]).string
+    require 'net/http'
+
+    if url[/gist.github.com\/[a-z\d]+$/]
+      url += '.txt'
+    elsif url[/github.com.*blob/]
+      url.sub!('blob', 'raw')
+    end
+
+    play_back_string open(url).string
   rescue SocketError
-    abort "ripl can't play `#{config[:play]}'"
+    abort "ripl can't play `#{url}'"
   end
 
   def play_back_string(str)
