@@ -2,5 +2,5 @@
 
 require 'ripl'
 require 'ripl/play'
-abort "File required" unless Ripl.config[:play] = ARGV[0]
+Ripl.config[:play] = ARGV[0] if ARGV[0]
 Ripl.start
