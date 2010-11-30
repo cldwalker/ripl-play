@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'ripl'
+require 'ripl/record'
+Ripl.config[:play] = ARGV[0] if ARGV[0]
+Ripl.start
