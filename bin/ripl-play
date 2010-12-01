@@ -2,5 +2,12 @@
 
 require 'ripl'
 require 'ripl/play'
+
+if ARGV.delete('-h') || ARGV.delete('--help')
+  puts "Usage: ripl-play [-q|--quiet] [-h|--help] [FILE='ripl_play']"
+  exit
+end
+Ripl.config[:play_quiet] = ARGV.delete('-q') || ARGV.delete('--quiet')
 Ripl.config[:play] = ARGV[0].dup if ARGV[0]
+
 Ripl.start

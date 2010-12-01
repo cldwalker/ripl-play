@@ -4,6 +4,11 @@ module Ripl::Play
   def before_loop
     super
     play_back
+    config[:play_quiet] = false
+  end
+
+  def print_result(*)
+    super unless config[:play_quiet]
   end
 
   def play_back
