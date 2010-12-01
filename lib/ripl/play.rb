@@ -5,10 +5,16 @@ module Ripl::Play
     super
     play_back
     config[:play_quiet] = false
+    require 'ripl/readline'
   end
 
   def print_result(*)
     super unless config[:play_quiet]
+  end
+
+  def get_input
+    puts(prompt + @play_input)
+    @play_input
   end
 
   def play_back
@@ -40,13 +46,13 @@ module Ripl::Play
   end
 
   def play_back_string(str)
-    str.split("\n").each do |input|
-      puts prompt + input
-      eval_input(input)
-      print_result(@result)
-    end
+    str.split("\n").each {|input|
+      @play_input = input
+      loop_once
+    }
   end
 end
 
 Ripl::Shell.send :include, Ripl::Play
+Ripl.config[:readline] = false
 Ripl.config[:play] = 'ripl_tape'
