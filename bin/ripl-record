@@ -2,5 +2,9 @@
 
 require 'ripl'
 require 'ripl/record'
-Ripl.config[:play] = ARGV[0] if ARGV[0]
+if ARGV.delete('-h') || ARGV.delete('--help')
+  puts "Usage: ripl-record [-h|--help] [FILE='ripl_play']"
+  exit
+end
+Ripl.config[:play] = ARGV[0].dup if ARGV[0]
 Ripl.start
