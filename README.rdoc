@@ -1,0 +1,68 @@
+== Description
+A ripl plugin to playback ruby code in ripl coming from files, urls or stdin. Also records a ripl
+session for playback later.
+
+== Install
+Install the gem with:
+
+    sudo gem install ripl-play
+
+To be able to playback multi-line code:
+
+    sudo gem install ripl-multi_line
+
+== Usage
+
+With this plugin, ripl gains commands play and record.
+
+`ripl play` plays its input, line by line, as if each line were input by a user. To play a url:
+
+    $ ripl play https://gist.github.com/725338
+    >> a = 10 ** 2
+    => 100
+    >> a + 10
+    => 110
+    >>
+
+To playback a url quietly (i.e. you just want to load the url into ripl):
+
+    $ ripl play https://gist.github.com/725338 -q
+    >> a = 10 ** 2
+    >> a + 10
+    >>
+
+Urls should point to raw text except for gists and any github file url
+({like this}[https://github.com/cldwalker/irbfiles/blob/master/boson/commands/core/string.rb])
+which are autoconverted.
+
+`ripl play` can also playback files or from stdin:
+
+    # Plays script.rb line by line
+    $ ripl play script.rb
+    >> ...
+
+    # Plays back last 10 lines of irb history
+    $ tail -10 ~/.irb_history | ripl play
+    >> ...
+
+If you want to share a ripl session for playback later, start ripl with record:
+
+    # By default record saves to ripl_tape. Pass an argument to explicitly name the file
+    $ ripl record
+    >> :do_something
+    => :do_something
+    >> ...
+    => ...
+    <Control-D>
+
+After exiting, the file ripl_tape will contain all of your inputs from that session.
+Now anyone can playback that session with `ripl play`:
+
+    # play defaults to ripl_tape
+    # Assuming you're in the same directory as ripl_tape
+    $ ripl play
+    >> :do_something
+    => :do_something
+    >> ...
+    => ...
+    >>
