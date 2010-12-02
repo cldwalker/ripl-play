@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.description =  ""
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project = 'tagaholic'
+  s.executables = ['ripl-play', 'ripl-record']
   s.add_dependency 'ripl', '>= 0.2.5'
   s.files = Dir.glob(%w[{lib,test}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} **/deps.rip]) + %w{Rakefile .gemspec}
   s.extra_rdoc_files = ["README.rdoc", "LICENSE.txt"]
