@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = "gabriel.horner@gmail.com"
   s.homepage    = "http://github.com/cldwalker/ripl-play"
   s.summary = "A ripl plugin to playback and record inputs in ripl"
-  s.description =  ""
+  s.description =  "A ripl plugin to playback ruby code in ripl coming from files, urls or stdin. Also records a ripl session for playback later."
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project = 'tagaholic'
   s.executables = ['ripl-play', 'ripl-record']
