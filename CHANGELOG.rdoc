@@ -1,2 +1,5 @@
+== 0.1.1
+* Take out exit words from a recording
+
 == 0.1.0
 * Initial release
