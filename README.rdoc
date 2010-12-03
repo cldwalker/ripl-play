@@ -15,7 +15,7 @@ To be able to playback multi-line code:
 
 With this plugin, ripl gains commands play and record.
 
-`ripl play` plays its input, line by line, as if each line were input by a user. To play a url:
++ripl play+ plays its input, line by line, as if each line were input by a user. To play a url:
 
     $ ripl play https://gist.github.com/725338
     >> a = 10 ** 2
@@ -35,7 +35,7 @@ Urls should point to raw text except for gists and any github file url
 ({like this}[https://github.com/cldwalker/irbfiles/blob/master/boson/commands/core/string.rb])
 which are autoconverted.
 
-`ripl play` can also playback files or from stdin:
++ripl play+ can also playback files or from stdin:
 
     # Plays script.rb line by line
     $ ripl play script.rb
@@ -56,7 +56,7 @@ If you want to share a ripl session for playback later, start ripl with record:
     <Control-D>
 
 After exiting, the file ripl_tape will contain all of your inputs from that session.
-Now anyone can playback that session with `ripl play`:
+Now anyone can playback that session with +ripl play+:
 
     # play defaults to ripl_tape
     # Assuming you're in the same directory as ripl_tape
