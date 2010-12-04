@@ -48,10 +48,38 @@ module Ripl::Play
   end
 
   def play_back_string(str)
+    Ripl::Play.install_gems(str) if config[:play_install]
     str.split("\n").each {|input|
       @play_input = input
       loop_once
     }
+  end
+
+  class << self
+    def install_gems(str)
+      gems = gems_to_install(str)
+      return if gems.empty?
+      print "Can I install the following gems: #{gems.join(', ')} ? ([y]/n)"
+      if $stdin.gets.to_s[/^n/]
+        abort "Please install these gems manually: #{gems.join(' ')}"
+      else
+        system(ENV['GEM'] || 'gem', 'install', *gems)
+      end
+    end
+
+    def gems_to_install(str)
+      gems = str.scan(/require\s*['"]([^'"\s]+)['"]/).flatten
+      gems.reject {|e| requireable(e) }.map {|e|
+        e.include?('/') ? e[/^[^\/]+/] : e
+      }.uniq
+    end
+
+    def requireable(lib)
+      require lib
+      true
+    rescue LoadError
+      false
+    end
   end
 end
 
