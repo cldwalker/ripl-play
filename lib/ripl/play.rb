@@ -71,7 +71,7 @@ module Ripl::Play
       gems = str.scan(/require\s*['"]([^'"\s]+)['"]/).flatten
       gems.reject {|e| requireable(e) }.map {|e|
         e.include?('/') ? e[/^[^\/]+/] : e
-      }.uniq
+      }.uniq.map {|e| e[/^active_/] ? e.sub('_', '') : e }
     end
 
     def requireable(lib)
