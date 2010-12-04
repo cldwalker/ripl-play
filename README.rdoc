@@ -11,11 +11,14 @@ To be able to playback multi-line code:
 
     sudo gem install ripl-multi_line
 
+    # Add to ~/.riplrc
+    require 'ripl/multi_line'
+
 == Usage
 
-With this plugin, ripl gains commands play and record.
+<tt>ripl play</tt> plays its input, line by line, as if each line were input by a user.
 
-<tt>ripl play</tt> plays its input, line by line, as if each line were input by a user. To play a url:
+To play a url:
 
     $ ripl play https://gist.github.com/725338
     >> a = 10 ** 2
@@ -30,6 +33,13 @@ To playback a url quietly (i.e. you just want to load the url into ripl):
     >> a = 10 ** 2
     >> a + 10
     >>
+
+To playback a url with relevant gems automatically installed (you may want to create an rvm
+gemset before doing this)
+
+    $ ripl play https://gist.github.com/622668 -i
+    Can I install the following gems: tilt, erubis ? ([y]/n)
+    ....
 
 Urls should point to raw text except for gists and any github file url
 ({like this}[https://github.com/cldwalker/irbfiles/blob/master/boson/commands/core/string.rb])
