@@ -1,7 +1,7 @@
 require 'ripl'
 
 module Ripl::Play
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 
   def before_loop
     super
