@@ -10,5 +10,5 @@ module Ripl::Record
   end
 end
 
-Ripl::Shell.send :include, Ripl::Record
+Ripl::Shell.include Ripl::Record
 Ripl.config[:play] = 'ripl_tape'

@@ -83,6 +83,6 @@ module Ripl::Play
   end
 end
 
-Ripl::Shell.send :include, Ripl::Play
+Ripl::Shell.include Ripl::Play
 Ripl.config[:readline] = false
 Ripl.config[:play] = 'ripl_tape'
