@@ -1,5 +1,5 @@
 == 0.2.1
-* Update to lastest ripl
+* Update to latest ripl
 
 == 0.2.0
 * Add -i option to autoinstall gems detected in input
